@@ -1,0 +1,245 @@
+<App Theme="Basic" ClearColor="#FFF">
+
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+        <iOS.StatusBarConfig Style="Light"/>
+
+		<Image Layer="Background" File="Assets/lavine_background.jpg" StretchMode="UniformToFill" Margin="-100">
+			<Blur Radius="6"/>
+		</Image>
+
+		<StackPanel Margin="0,5,0,0" Dock="Top" Visibility="Visible">
+			<Text FontSize="28" Alignment="VerticalCenter"
+				TextAlignment="Center" Padding="2" 
+				Value="BASELINE" TextColor="#D32F2F" />
+			<Rectangle Height="1" Margin="0,3,0,0" Fill="#212121" />
+		</StackPanel>
+
+        <Panel ux:Class="Tab" ux:Name="self" ClipToBounds="false" Margin="0,0,0,4">
+            <string ux:Property="Text" />
+            <Text Value="{Property self.Text}" TextColor="#FFF" Font="RobotoMedium" Alignment="Center" />
+        </Panel>
+
+        <StackPanel Dock="Top" >
+            <MultiLayoutPanel Height="50" ux:Name="tabBar">
+                <GridLayout ColumnCount="3" Rows="1*"/>
+                <Panel ux:Name="page1Tab">
+                    <Placeholder>
+                        <Rectangle ux:Name="indicator" Alignment="Bottom" Height="4" Fill="#6c7a89">
+                            <LayoutAnimation>
+                                <Move RelativeTo="LayoutChange" X="1" Duration="0.4" Easing="BackIn"/>
+                            </LayoutAnimation>
+                        </Rectangle>
+                    </Placeholder>
+                    <Tab Text="News">
+                        <Clicked>
+                            <Set navigation.Active="page1" />
+                        </Clicked>
+                    </Tab>
+                </Panel>
+                <Panel ux:Name="page2Tab">
+                    <Placeholder  Target="indicator"/>
+                    <Tab Text="Scores">
+                        <Clicked>
+                            <Set navigation.Active="page2" />
+                        </Clicked>
+                    </Tab>
+                </Panel>
+                <Panel ux:Name="page3Tab">
+                    <Placeholder Target="indicator"/>
+                    <Tab Text="Highlights">
+                        <Clicked>
+                            <Set navigation.Active="page3" />
+                        </Clicked>
+                    </Tab>
+                </Panel>
+            </MultiLayoutPanel>
+            <Rectangle Height="1" Margin="0,3,0,0" Fill="#212121" />
+        </StackPanel>
+
+
+        <PageControl ux:Name="navigation">
+            <Text ux:Class="WelcomeText" FontSize="30" Alignment="Center"/>
+            <Page ux:Name="page1">
+                <WhileActive Threshold="0.5">
+                    <Set tabBar.LayoutElement="page1Tab" />
+                </WhileActive>
+                <JavaScript>			
+					var Observable = require("FuseJS/Observable");
+
+					function endLoading(){
+						isLoading.value = false;
+					}
+
+					function reloadHandler(){
+						isLoading.value = true;
+						setTimeout(getNews, 2000);
+						setTimeout(endLoading, 3000);
+					}
+
+					var isLoading = Observable(false);
+
+					var data = Observable();			
+
+					function getNews(){
+						fetch('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100&q=http://www.nba.com/rss/nba_rss.xml')
+						.then(function(response) { return response.json(); })
+						.then(function(responseObject) { data.value = responseObject; });
+					}
+
+					getNews();
+
+					module.exports = {
+						dataSource: data,
+						getNews: getNews,
+						isLoading: isLoading,
+						reloadHandler: reloadHandler
+					};
+				</JavaScript>
+
+				<Text ux:Class="Header" Margin="10,10,10,5" TextWrapping="Wrap" FontSize="22" TextColor="#FFF"/>
+				<Text ux:Class="Article" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" TextColor="#CFD8DC" />
+				<Text ux:Class="PublishedDate" Margin="10,0,10,0" FontSize="13" TextColor="#727272" />
+
+				<ScrollView SnapMinTransform="false">
+					<DockPanel>
+						<CogWheelReload Dock="Top">
+							<WhileEnabled>
+								<EvaluateJS Handler="{getNews}"/>
+							</WhileEnabled>
+						</CogWheelReload>
+						<StackPanel Alignment="Top">
+							<Panel Height="7" />
+							
+							<Each Items="{dataSource.responseData.feed.entries}">
+								<Panel ux:Class="HorizontalBar" Margin="0,10,0,10" 
+										Alignment="VerticalCenter">
+									<Rectangle Height="1" Fill="#dcdee3" />
+								</Panel>
+								
+								<Header Value="{title}">
+									<Clicked>
+										<LaunchUri Uri="{link}"/>
+									</Clicked>
+								</Header> 
+								<Article Value="{content}" >
+									<Clicked>
+										<LaunchUri Uri="{link}"/>
+									</Clicked>
+								</Article>
+					
+								<HorizontalBar />
+							</Each>
+						</StackPanel>
+					</DockPanel>
+				</ScrollView>
+
+            </Page>
+            <Page ux:Name="page2">
+                <WhileActive Threshold="0.5">
+                    <Set tabBar.LayoutElement="page2Tab" />
+                </WhileActive>
+                <JavaScript>			
+					var Observable = require("FuseJS/Observable");
+
+					function endLoading(){
+						isLoading.value = false;
+					}
+
+					function reloadHandler(){
+						isLoading.value = true;
+						setTimeout(endLoading, 3000);
+						setTimeout(getScores, 2000);
+					}
+
+					var isLoading = Observable(false);
+
+					var data = Observable();
+
+					function getScores(){
+						fetch('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100&q=https://twitrss.me/twitter_user_to_rss/?user=simplenbascores')
+						.then(function(response) { return response.json(); })
+						.then(function(responseObject) { data.value = responseObject; });
+					}
+
+					getScores();
+
+					//console.log(data);
+
+					module.exports = {
+						dataSource: data,
+						getScores: getScores,
+						isLoading: isLoading,
+						reloadHandler: reloadHandler
+					};
+				</JavaScript>
+
+				<Text ux:Class="HeaderScores" Margin="10,20,10,10" TextWrapping="Wrap" FontSize="22" TextColor="#FFF"/>
+				<Text ux:Class="ArticleScores" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" TextColor="#CFD8DC" />
+				<Text ux:Class="PublishedDateScores" Margin="10,0,10,0" FontSize="13" TextColor="#727272" />
+
+				<ScrollView SnapMinTransform="false">
+					<DockPanel>
+						<CogWheelReload Dock="Top">
+							<WhileEnabled>
+								<EvaluateJS Handler="{getScores}"/>
+							</WhileEnabled>
+						</CogWheelReload>
+						<StackPanel Alignment="Top">
+							<Panel Height="7" />
+							
+							<Each Items="{dataSource.responseData.feed.entries}">
+								<Panel ux:Class="HorizontalBarScores" Margin="0,10,0,10" 
+										Alignment="VerticalCenter">
+									<Rectangle Height="1" Fill="#dcdee3" />
+								</Panel>
+								
+								<HeaderScores Value="{title}">
+									<Clicked>
+										<LaunchUri Uri="{link}"/>
+									</Clicked>
+								</HeaderScores>
+							 	
+								<HorizontalBarScores />
+							</Each>
+						</StackPanel>
+					</DockPanel>
+				</ScrollView>
+            </Page>
+            <Page ux:Name="page3">
+                <WhileActive Threshold="0.5">
+                    <Set tabBar.LayoutElement="page3Tab" />
+                </WhileActive>
+         
+
+				<Text ux:Class="HeaderHighlights" Margin="10,20,10,10" TextWrapping="Wrap" FontSize="22" TextColor="#FFF"/>
+				<Text ux:Class="ArticleHighlights" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" TextColor="#CFD8DC" />
+				<Text ux:Class="PublishedDateHighlights" Margin="10,0,10,0" FontSize="13" TextColor="#727272" />
+
+				
+				
+				<Panel Height="7" />
+
+				<StackPanel>
+					<Button Text="Back">
+						<Clicked>
+							<GoBack TargetNode="Videos"/>
+						</Clicked>
+					</Button>
+					
+					<NativeViewHost Height="420" Alignment="BottomCenter">
+						<WebView ux:Name="Videos" Dock="Fill" Url="https://www.youtube.com/channel/UCfSmFFIZsuPSHoiEVhnSkJA/videos">
+							<LinearNavigation/>
+
+							<!--OnBackButton>
+								<GoBack TargetNode="Videos"/>
+							</OnBackButton-->
+						</WebView>
+					</NativeViewHost>
+				</StackPanel>
+					
+            </Page>
+        </PageControl>
+    </DockPanel>
+</App>
