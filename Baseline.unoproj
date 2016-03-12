@@ -1,4 +1,16 @@
 {
+  "Version": "0.221.19",
+  "Title": "Baseline",
+  "Copyright": "Casey Williams Copyright (C) 2016",
+  "Publisher": "Casey Williams",
+  "Mobile": {
+    "KeepAlive": false,
+    "ShowStatusbar": true,
+    "RunsInBackground": true,
+    "Orientations": "Auto"
+  },
+
+
   "InternalsVisibleTo": [],
   "Packages": [
     "Fuse.Animations",
