@@ -16,4 +16,4 @@
 - Single videos rather than a complete web interface view
 
 
-<footer><p>If you would like to become a tester please visit these pages: <a href="https://tsfr.io/ksucts">Android</a> or <a href="">iOS</a></p></footer>
+<footer><p>If you would like to become a tester please visit these pages: <a href="https://tsfr.io/ksucts">Android</a> or <a href="">iOS</a>(not yet available).</p></footer>
