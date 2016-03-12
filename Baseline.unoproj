@@ -22,6 +22,7 @@
     "FuseCore"
   ],
   "Projects": [],
+  "Icon": "Icons/Baseline-logo.png",
   "Includes": [
     "*"
   ]
