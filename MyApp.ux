@@ -32,23 +32,23 @@
                             </LayoutAnimation>
                         </Rectangle>
                     </Placeholder>
-                    <Tab Text="News">
+                    <Tab Text="News" HitTestMode="LocalBoundsAndChildren">
                         <Clicked>
                             <Set navigation.Active="page1" />
                         </Clicked>
                     </Tab>
                 </Panel>
-                <Panel ux:Name="page2Tab">
+                <Panel ux:Name="page2Tab" HitTestMode="LocalBoundsAndChildren">
                     <Placeholder  Target="indicator"/>
-                    <Tab Text="Scores">
+                    <Tab Text="Scores" HitTestMode="LocalBoundsAndChildren">
                         <Clicked>
                             <Set navigation.Active="page2" />
                         </Clicked>
                     </Tab>
                 </Panel>
-                <Panel ux:Name="page3Tab">
+                <Panel ux:Name="page3Tab" HitTestMode="LocalBoundsAndChildren">
                     <Placeholder Target="indicator"/>
-                    <Tab Text="Highlights">
+                    <Tab Text="Highlights" HitTestMode="LocalBoundsAndChildren">
                         <Clicked>
                             <Set navigation.Active="page3" />
                         </Clicked>
@@ -123,11 +123,12 @@
 										<LaunchUri Uri="{link}"/>
 									</Clicked>
 								</Header> 
-								<Article Value="{content}" >
+								<Article Value="{contentSnippet}" >
 									<Clicked>
 										<LaunchUri Uri="{link}"/>
 									</Clicked>
 								</Article>
+								<PublishedDate Value="{publishedDate}"/>
 					
 								<HorizontalBar />
 							</Each>
@@ -156,16 +157,22 @@
 					var isLoading = Observable(false);
 
 					var data = Observable();
+					var titles = Observable();
 
 					function getScores(){
 						fetch('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100&q=https://twitrss.me/twitter_user_to_rss/?user=simplenbascores')
 						.then(function(response) { return response.json(); })
-						.then(function(responseObject) { data.value = responseObject; });
+						.then(function(responseObject) { 
+							data.value = responseObject;
+							for(i in responseObject.responseData.feed.entries){
+								titles.add(i);
+								console.log(i);
+							} });
 					}
 
 					getScores();
 
-					//console.log(data);
+					//console.log(titles.value);
 
 					module.exports = {
 						dataSource: data,
@@ -200,6 +207,7 @@
 										<LaunchUri Uri="{link}"/>
 									</Clicked>
 								</HeaderScores>
+								<PublishedDateScores Value="{publishedDate}"/>
 							 	
 								<HorizontalBarScores />
 							</Each>
@@ -229,8 +237,8 @@
 					</Button>
 					
 					<NativeViewHost>
+						<LinearNavigation />
 						<WebView ux:Name="Videos" Dock="Fill" Url="https://www.youtube.com/channel/UCfSmFFIZsuPSHoiEVhnSkJA/videos">
-							<LinearNavigation />
 
 							<OnBackButton>
 								<GoBack TargetNode="Videos"/>
