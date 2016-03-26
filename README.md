@@ -7,12 +7,12 @@
 
 <h2>Features:</h2>
 - Live news feed with links to articles
-- Final scores Twitter feed display
+- Final scores feed display
 - WebView to watch highlights of latest games
 - Pull to reload
 
 <h2>Future Updates:</h2>
-- Better displayed scores feed (possibly with logos)
+- Scores feed with logos
 - Single videos rather than a complete web interface view
 
 
