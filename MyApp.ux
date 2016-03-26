@@ -171,6 +171,7 @@
 					});
 
 					function getScores(){
+						titles.clear();
 						fetch('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100&q=https://twitrss.me/twitter_user_to_rss/?user=simplenbascores')
 						.then(function(response) { return response.json(); })
 						.then(function(responseObject) { 
