@@ -1,18 +1,48 @@
 <App Theme="Basic" ClearColor="#FFF">
 
+	<FileImageSource ux:Key="76ers" File="teams/76ers.png" />
+	<FileImageSource ux:Key="Bucks" File="teams/Bucks.png" />
+	<FileImageSource ux:Key="Bulls" File="teams/Bulls.png" />
+	<FileImageSource ux:Key="Cavaliers" File="teams/Cavaliers.png" />
+	<FileImageSource ux:Key="Celtics" File="teams/Celtics.png" />
+	<FileImageSource ux:Key="Clippers" File="teams/Clippers.png" />
+	<FileImageSource ux:Key="Grizzlies" File="teams/Grizzlies.png" />
+	<FileImageSource ux:Key="Hawks" File="teams/Hawks.png" />
+	<FileImageSource ux:Key="Heat" File="teams/Heat.png" />
+	<FileImageSource ux:Key="Hornets" File="teams/Hornets.png" />
+	<FileImageSource ux:Key="Jazz" File="teams/Jazz.png" />
+	<FileImageSource ux:Key="Knicks" File="teams/Knicks.png" />
+	<FileImageSource ux:Key="Kings" File="teams/Kings.png" />
+	<FileImageSource ux:Key="Lakers" File="teams/Lakers.png" />
+	<FileImageSource ux:Key="Magic" File="teams/Magic.png" />
+	<FileImageSource ux:Key="Mavericks" File="teams/Mavericks.png" />
+	<FileImageSource ux:Key="Nets" File="teams/Nets.png" />
+	<FileImageSource ux:Key="Nuggets" File="teams/Nuggets.png" />
+	<FileImageSource ux:Key="Pacers" File="teams/Pacers.png" />
+	<FileImageSource ux:Key="Pelicans" File="teams/Pelicans.png" />
+	<FileImageSource ux:Key="Pistons" File="teams/Pistons.png" />
+	<FileImageSource ux:Key="Rockets" File="teams/Rockets.png" />
+	<FileImageSource ux:Key="Spurs" File="teams/Spurs.png" />
+	<FileImageSource ux:Key="Suns" File="teams/Suns.png" />
+	<FileImageSource ux:Key="Thunder" File="teams/Thunder.png" />
+	<FileImageSource ux:Key="Timberwolves" File="teams/Timberwolves.png" />
+	<FileImageSource ux:Key="Trail Blazers" File="teams/Trail Blazers.png" />
+	<FileImageSource ux:Key="Warriors" File="teams/Warriors.png" />
+	<FileImageSource ux:Key="Wizards" File="teams/Wizards.png" />
+	<FileImageSource ux:Key="Raptors" File="teams/Raptors.png" />
+
+
 
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
-        <iOS.StatusBarConfig Style="Light"/>
+        <iOS.StatusBarConfig Style="Light" />
 
 		<Image Layer="Background" File="Assets/lavine_background.jpg" StretchMode="UniformToFill" Margin="-100">
-			<Blur Radius="6"/>
+			<Blur Radius="6" />
 		</Image>
 
 		<StackPanel Margin="0,5,0,0" Dock="Top" Visibility="Visible">
-			<Text FontSize="28" Alignment="VerticalCenter"
-				TextAlignment="Center" Padding="2" 
-				Value="BASELINE" TextColor="#D32F2F" />
+			<Text FontSize="28" Alignment="VerticalCenter" TextAlignment="Center" Padding="2" Value="BASELINE" TextColor="#D32F2F" />
 			<Rectangle Height="1" Margin="0,3,0,0" Fill="#212121" />
 		</StackPanel>
 
@@ -21,14 +51,14 @@
             <Text Value="{Property self.Text}" TextColor="#FFF" Font="RobotoMedium" Alignment="Center" />
         </Panel>
 
-        <StackPanel Dock="Top" >
+        <StackPanel Dock="Top">
             <MultiLayoutPanel Height="50" ux:Name="tabBar">
-                <GridLayout ColumnCount="3" Rows="1*"/>
+                <GridLayout ColumnCount="3" Rows="1*" />
                 <Panel ux:Name="page1Tab">
                     <Placeholder>
                         <Rectangle ux:Name="indicator" Alignment="Bottom" Height="4" Fill="#6c7a89">
                             <LayoutAnimation>
-                                <Move RelativeTo="LayoutChange" X="1" Duration="0.4" Easing="BackIn"/>
+                                <Move RelativeTo="LayoutChange" X="1" Duration="0.4" Easing="BackIn" />
                             </LayoutAnimation>
                         </Rectangle>
                     </Placeholder>
@@ -39,7 +69,7 @@
                     </Tab>
                 </Panel>
                 <Panel ux:Name="page2Tab" HitTestMode="LocalBoundsAndChildren">
-                    <Placeholder  Target="indicator"/>
+                    <Placeholder Target="indicator" />
                     <Tab Text="Scores" HitTestMode="LocalBoundsAndChildren">
                         <Clicked>
                             <Set navigation.Active="page2" />
@@ -47,7 +77,7 @@
                     </Tab>
                 </Panel>
                 <Panel ux:Name="page3Tab" HitTestMode="LocalBoundsAndChildren">
-                    <Placeholder Target="indicator"/>
+                    <Placeholder Target="indicator" />
                     <Tab Text="Highlights" HitTestMode="LocalBoundsAndChildren">
                         <Clicked>
                             <Set navigation.Active="page3" />
@@ -60,7 +90,7 @@
 
 
         <PageControl ux:Name="navigation">
-            <Text ux:Class="WelcomeText" FontSize="30" Alignment="Center"/>
+            <Text ux:Class="WelcomeText" FontSize="30" Alignment="Center" />
             <Page ux:Name="page1">
                 <WhileActive Threshold="0.5">
                     <Set tabBar.LayoutElement="page1Tab" />
@@ -98,7 +128,7 @@
 					};
 				</JavaScript>
 
-				<Text ux:Class="Header" Margin="10,10,10,5" TextWrapping="Wrap" FontSize="22" TextColor="#FFF"/>
+				<Text ux:Class="Header" Margin="10,10,10,5" TextWrapping="Wrap" FontSize="22" TextColor="#FFF" />
 				<Text ux:Class="Article" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" TextColor="#CFD8DC" />
 				<Text ux:Class="PublishedDate" Margin="10,0,10,0" FontSize="13" TextColor="#727272" />
 
@@ -106,29 +136,28 @@
 					<DockPanel>
 						<CogWheelReload Dock="Top">
 							<WhileEnabled>
-								<EvaluateJS Handler="{getNews}"/>
+								<EvaluateJS Handler="{getNews}" />
 							</WhileEnabled>
 						</CogWheelReload>
 						<StackPanel Alignment="Top">
 							<Panel Height="7" />
 							
 							<Each Items="{dataSource.responseData.feed.entries}">
-								<Panel ux:Class="HorizontalBar" Margin="0,10,0,10" 
-										Alignment="VerticalCenter">
+								<Panel ux:Class="HorizontalBar" Margin="0,10,0,10" Alignment="VerticalCenter">
 									<Rectangle Height="1" Fill="#dcdee3" />
 								</Panel>
 								
 								<Header Value="{title}">
 									<Clicked>
-										<LaunchUri Uri="{link}"/>
+										<LaunchUri Uri="{link}" />
 									</Clicked>
 								</Header> 
-								<Article Value="{contentSnippet}" >
+								<Article Value="{contentSnippet}">
 									<Clicked>
-										<LaunchUri Uri="{link}"/>
+										<LaunchUri Uri="{link}" />
 									</Clicked>
 								</Article>
-								<PublishedDate Value="{publishedDate}"/>
+								<PublishedDate Value="{publishedDate}" />
 					
 								<HorizontalBar />
 							</Each>
@@ -154,7 +183,13 @@
 						setTimeout(getScores, 2000);
 					}
 
+					
 					var isLoading = Observable(false);
+
+					
+
+
+					
 
 					var data = Observable();
 					var originalTitles = Observable();
@@ -162,12 +197,23 @@
 						var removedThe = string.split('The ');
 						var removedHashtags = removedThe[1].split('. #')[0];
 						var teamOneBoth = (removedHashtags.split(' won '));
+
 						var teamOne = teamOneBoth[0];
+
 						var teamTwoBoth = teamOneBoth[1].split(' over the ');
+
 						var teamTwo = teamTwoBoth[1];
+
+						var team1logo = "teams/" + teamOne + ".png";
+						var team2logo = "teams/" + teamTwo + ".png";
+
 						var score = teamTwoBoth[0];
+
+						
+						
 						var complete = teamOne + " " + score + " " + teamTwo;
-						return complete;
+						
+						return {team1: teamOne, team2: teamTwo, score: score, teamOneLogo: team1logo, teamTwoLogo: team2logo};
 					});
 
 					function getScores(){
@@ -202,32 +248,47 @@
 						isLoading: isLoading,
 						reloadHandler: reloadHandler,
 						titles: titles
+						
+						
 					};
 				</JavaScript>
 
-				<Text Alignment="Center" ux:Class="HeaderScores" Margin="10,20,10,10" TextWrapping="Wrap" FontSize="22" TextColor="#FFF"/>
-				<Text ux:Class="ArticleScores" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" TextColor="#CFD8DC" />
-				<Text ux:Class="PublishedDateScores" Margin="10,0,10,0" FontSize="13" TextColor="#727272" />
+				<Text ux:Class="TeamOne" TextColor="#FFF" FontSize="20" />
+				<Text ux:Class="TeamTwo" TextColor="#FFF" FontSize="20" />
+				<Text ux:Class="Score" TextColor="#D32F2F" FontSize="20" />
 
 				<ScrollView SnapMinTransform="false">
 					<DockPanel>
 						<CogWheelReload Dock="Top">
 							<WhileEnabled>
-								<EvaluateJS Handler="{getScores}"/>
+								<EvaluateJS Handler="{getScores}" />
 							</WhileEnabled>
 						</CogWheelReload>
 						<StackPanel Alignment="Top">
 							<Panel Height="7" />
 							
 							<Each Items="{titles}">
-								<Panel ux:Class="HorizontalBarScores" Margin="0,10,0,10" 
-										Alignment="VerticalCenter">
+								<Panel ux:Class="HorizontalBarScores" Margin="0,10,0,10" Alignment="VerticalCenter">
 									<Rectangle Height="1" Fill="#dcdee3" />
 								</Panel>
 								<DockPanel>
-									<HeaderScores Value="{}"/>
+									<DockPanel Padding="0,0,20,0">
+										<StackPanel Margin="10,0,0,0" Dock="Left" Alignment="CenterLeft" Width="33%">					
+											<Image Alignment="Center" Source="{DataToResource team1}" Height="50" Width="50" />
+											<TeamOne Alignment="Center" Value="{team1}" />
+										</StackPanel>
+
+										<Panel Alignment="HorizontalCenter" Margin="10,0,10,0" Width="33%">
+											<Score Margin="10" Alignment="Center" Value="{score}" TextAlignment="Center"><DropShadow /></Score>
+										</Panel>
+										<StackPanel Dock="Right" Alignment="Center" Margin="0,0,10,0" Width="33%">
+											<Image Alignment="Center" Source="{DataToResource team2}" Height="50" Width="50" />
+											<TeamTwo Alignment="Center" Value="{team2}" />
+										</StackPanel>
+										
+									</DockPanel>
 									
-									<!--PublishedDateScores Value="{publishedDate}"/-->
+									
 								 	
 									<HorizontalBarScores Dock="Bottom" />
 								</DockPanel>
@@ -242,7 +303,7 @@
                 </WhileActive>
          
 
-				<Text ux:Class="HeaderHighlights" Margin="10,20,10,10" TextWrapping="Wrap" FontSize="22" TextColor="#FFF"/>
+				<Text ux:Class="HeaderHighlights" Margin="10,20,10,10" TextWrapping="Wrap" FontSize="22" TextColor="#FFF" />
 				<Text ux:Class="ArticleHighlights" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" TextColor="#CFD8DC" />
 				<Text ux:Class="PublishedDateHighlights" Margin="10,0,10,0" FontSize="13" TextColor="#727272" />
 
@@ -253,7 +314,7 @@
 				<DockPanel>
 					<Button Text="Back" Dock="Top">
 						<Clicked>
-							<GoBack TargetNode="Videos"/>
+							<GoBack TargetNode="Videos" />
 						</Clicked>
 					</Button>
 					
@@ -262,7 +323,7 @@
 						<WebView ux:Name="Videos" Dock="Fill" Url="https://www.youtube.com/channel/UCfSmFFIZsuPSHoiEVhnSkJA/videos">
 
 							<OnBackButton>
-								<GoBack TargetNode="Videos"/>
+								<GoBack TargetNode="Videos" />
 							</OnBackButton>
 						</WebView>
 					</NativeViewHost>
