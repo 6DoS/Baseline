@@ -12,7 +12,6 @@
 - Pull to reload
 
 <h2>Future Updates:</h2>
-- Scores feed with logos
 - Single videos rather than a complete web interface view
 
 
