@@ -253,8 +253,8 @@
 					};
 				</JavaScript>
 
-				<Text ux:Class="TeamOne" TextColor="#FFF" FontSize="20" />
-				<Text ux:Class="TeamTwo" TextColor="#FFF" FontSize="20" />
+				<Text ux:Class="TeamOne" TextWrapping="NoWrap" TextColor="#FFF" FontSize="18" />
+				<Text ux:Class="TeamTwo" TextWrapping="Wrap" TextColor="#FFF" FontSize="18" />
 				<Text ux:Class="Score" TextColor="#D32F2F" FontSize="20" />
 
 				<ScrollView SnapMinTransform="false">
