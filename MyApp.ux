@@ -311,7 +311,8 @@
 				
 				<Panel Height="7" />
 
-				<DockPanel>
+				
+				<ClientPanel>
 					<Button Text="Back" Dock="Top">
 						<Clicked>
 							<GoBack TargetNode="Videos" />
@@ -319,15 +320,15 @@
 					</Button>
 					
 					<NativeViewHost>
-						<LinearNavigation />
-						<WebView ux:Name="Videos" Dock="Fill" Url="https://www.youtube.com/channel/UCfSmFFIZsuPSHoiEVhnSkJA/videos">
+						<WebView ux:Name="Videos" Dock="Fill" Url="https://www.youtube.com/channel/UCRUQQrm8_l3CVYxfq2kPMlg/videos">
 
 							<OnBackButton>
-								<GoBack TargetNode="Videos" />
+								<GoBack />
 							</OnBackButton>
 						</WebView>
 					</NativeViewHost>
-				</DockPanel>
+				</ClientPanel>
+				
 					
             </Page>
         </PageControl>
